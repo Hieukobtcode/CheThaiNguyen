@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\BaiVietController;
+use App\Http\Controllers\Admin\CapTheController;
 use App\Http\Controllers\Admin\DanhMucController;
 use App\Http\Controllers\Admin\KhuyenMaiController;
+use App\Http\Controllers\Admin\SanPhamController;
+use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('client.trang-chu');
 });
 
 
@@ -25,6 +28,15 @@ Route::prefix('admin')->group(function () {
 
     //Voucher
     Route::resource('voucher',KhuyenMaiController::class);
+
+    //Sản phẩm
+    Route::resource('san_pham',SanPhamController::class);
+
+    //Thẻ thành viên
+    Route::resource('cap_bac',CapTheController::class);
+
+    //Banner
+    Route::resource('banner',BannerController::class);
     
 });
 

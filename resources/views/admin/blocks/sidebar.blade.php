@@ -78,6 +78,39 @@
                     </a>
                 </li>
 
+                {{-- Sản phẩm --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link danger-hover-bg" href="{{ route('san_pham.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:package-variant-closed" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Sản phẩm</span>
+                    </a>
+                </li>
+
+                {{-- Cấp bậc --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('cap_bac.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:shield-star" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Cấp bậc</span>
+                    </a>
+                </li>
+
+                {{-- Banner --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('banner.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:fire" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Banner</span>
+                    </a>
+                </li>
+
             </ul>
         </nav>
     </div>

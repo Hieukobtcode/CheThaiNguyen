@@ -17,6 +17,7 @@ class NguoiDung extends Authenticatable
         'email',
         'mat_khau',
         'vai_tro_id',
+        'cap_the_id'
     ];
 
     protected $hidden = [
@@ -27,6 +28,16 @@ class NguoiDung extends Authenticatable
     public function vaiTro()
     {
         return $this->belongsTo(VaiTro::class, 'vai_tro_id');
+    }
+
+    public function capThe()
+    {
+        return $this->belongsTo(CapThe::class, 'cap_the_id');
+    }
+
+    public function lichSuDiems()
+    {
+        return $this->hasMany(LichSuDiem::class, 'nguoi_dung_id');
     }
 
     public function diaChis()
@@ -43,5 +54,4 @@ class NguoiDung extends Authenticatable
     {
         return $this->hasOne(GioHang::class, 'nguoi_dung_id');
     }
-
 }
