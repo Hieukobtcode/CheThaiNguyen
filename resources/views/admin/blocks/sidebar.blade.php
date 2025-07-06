@@ -1,6 +1,6 @@
 <aside class="left-sidebar with-vertical">
     <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="index.html" class="text-nowrap logo-img">
+        <a href="#" class="text-nowrap logo-img">
             <img src="https://bootstrapdemos.wrappixel.com/spike/dist/assets/images/logos/logo-light.svg"
                 class="dark-logo" alt="Logo-Dark" />
             <img src="https://bootstrapdemos.wrappixel.com/spike/dist/assets/images/logos/logo-dark.svg"
@@ -102,12 +102,34 @@
 
                 {{-- Banner --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('banner.index') }}"
+                    <a class="sidebar-link sidebar-link primary-hover-bg" href="{{ route('banner.index') }}"
                         aria-expanded="false">
                         <span class="aside-icon p-2 bg-success-subtle rounded-1">
                             <iconify-icon icon="mdi:fire" class="fs-6"></iconify-icon>
                         </span>
                         <span class="hide-menu ps-1">Banner</span>
+                    </a>
+                </li>
+
+                {{-- User --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('nguoi_dung.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:user" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Người dùng</span>
+                    </a>
+                </li>
+
+                {{-- Đơn hàng --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('don_hang.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:receipt-text" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Đơn hàng</span>
                     </a>
                 </li>
 
@@ -123,8 +145,8 @@
                         <img src="https://bootstrapdemos.wrappixel.com/spike/dist/assets/images/profile/user-1.jpg"
                             width="45" height="45" class="img-fluid rounded-circle" alt="spike-img" />
                         <div>
-                            {{-- <h5 class="mb-1">{{ Auth::user()->name }}</h5> --}}
-                            {{-- <p class="mb-0">{{ Auth::user()->vaitro->ten }}</p> --}}
+                            <h5 class="mb-1">{{ Auth::user()->ten }}</h5>
+                            <p class="mb-0">Admin</p>
                         </div>
                     </div>
                     <form id="logout-form" action="" method="POST" style="display: none;">

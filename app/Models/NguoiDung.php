@@ -15,13 +15,15 @@ class NguoiDung extends Authenticatable
     protected $fillable = [
         'ten',
         'email',
-        'mat_khau',
+        'password',
         'vai_tro_id',
-        'cap_the_id'
+        'cap_the_id',
+        'hinh_anh',      
+        'trang_thai',
     ];
 
     protected $hidden = [
-        'mat_khau',
+        'password',
         'remember_token',
     ];
 

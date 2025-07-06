@@ -18,7 +18,9 @@ class DonHang extends Model
         'ma_van_don',
         'tong_tien',
         'trang_thai',
+        'trang_thai_thanh_toan', 
     ];
+
 
     public function nguoiDung()
     {

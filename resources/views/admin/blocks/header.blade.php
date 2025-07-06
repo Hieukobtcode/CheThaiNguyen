@@ -136,23 +136,22 @@
                                              alt="user" width="90" class="rounded-circle" />
                                          <div class="ms-4">
                                              <h4 class="mb-0 fs-5 fw-normal">
-                                                 {{-- {{ Auth::user()->name }}</h4> --}}
-                                             <span
-                                                 class="text-muted">{{ Auth::user()->vaitro->ten ?? 'Không rõ' }}</span>
+                                                 {{ Auth::user()->ten }}</h4>
+                                             <span class="text-muted">
+                                                 {{ Auth::user()->vai_tro_id == 0 ? 'Admin' : 'Khách hàng' }}
+                                             </span>
                                              <p class="text-muted mb-0 mt-1 d-flex align-items-center">
                                                  <iconify-icon icon="solar:mailbox-line-duotone"
                                                      class="fs-4 me-1"></iconify-icon>
-                                                 {{-- {{ Auth::user()->email }} --}}
+                                                 {{ Auth::user()->email }}
                                              </p>
                                          </div>
                                      </div>
 
-                                     <div class="py-6 px-7 mb-1">
-                                         <form method="POST" action="">
-                                             @csrf
-                                             <button type="submit" class="btn btn-primary w-100">Đăng xuất</button>
-                                         </form>
-                                     </div>
+                                     <form method="POST" action="{{ route('logout') }}">
+                                         @csrf
+                                         <button type="submit" class="btn btn-primary w-100">Đăng xuất</button>
+                                     </form>
 
                                  </div>
                              </div>

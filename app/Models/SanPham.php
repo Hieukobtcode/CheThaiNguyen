@@ -22,7 +22,6 @@ class SanPham extends Model
         'so_luong',
         'trang_thai',
         'danh_muc_id',
-        'trang_thai'
     ];
 
     public function danhMuc()
