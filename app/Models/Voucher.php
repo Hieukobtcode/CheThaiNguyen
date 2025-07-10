@@ -31,4 +31,9 @@ class Voucher extends Model
     {
         return $this->hasMany(DonHang::class, 'voucher_id');
     }
+
+    public function capBac()
+    {
+        return $this->belongsTo(CapThe::class, 'cap_bac_id');
+    }
 }

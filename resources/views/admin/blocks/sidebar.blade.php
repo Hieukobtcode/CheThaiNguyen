@@ -122,17 +122,6 @@
                     </a>
                 </li>
 
-                {{-- User --}}
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('voucher.index') }}"
-                        aria-expanded="false">
-                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
-                            <iconify-icon icon="mdi:promotion" class="fs-6"></iconify-icon>
-                        </span>
-                        <span class="hide-menu ps-1">Voucher</span>
-                    </a>
-                </li>
-
                 {{-- Đơn hàng --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('don_hang.index') }}"

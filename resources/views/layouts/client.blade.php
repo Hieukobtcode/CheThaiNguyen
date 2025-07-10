@@ -379,13 +379,19 @@
                         </div>
                     </div>
 
-                    <div class="logo text-center">
-                        <a href="/" class="d-block">
-                            <img loading="lazy"
-                                src="https://pos.nvncdn.com/eb9ddb-116318/store/20220301_M6gPcIeoQ8cwvJrojaQ7a688.png"
-                                alt="logo-t0239.store.nhanh.vn">
-                        </a>
-                    </div>
+                  <div class="logo text-center py-4">
+    <a href="/" class="d-inline-block">
+        <img 
+            src="{{ asset('storage/logo_web/logo.jpg') }}" 
+            alt="logo_web" 
+            loading="lazy"
+            class="img-fluid"
+            style="max-width: 250px; height: auto;"
+        >
+    </a>
+</div>
+
+
 
                     <div class="top-header__right">
 

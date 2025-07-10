@@ -9,9 +9,10 @@ class CapThe extends Model
     protected $table = 'cap_the';
 
     protected $fillable = [
-        'ten',               
+        'ten',       
+        'cap_bac_id',        
         'diem_toi_thieu',    
-        'ti_le_tich_diem', 
+        'ti_le_tich_diem',
         'uu_dai',          
     ];
 
@@ -20,5 +21,10 @@ class CapThe extends Model
     public function nguoiDungs()
     {
         return $this->hasMany(NguoiDung::class, 'cap_the_id');
+    }
+
+    public function vouchers()
+    {
+        return $this->hasMany(Voucher::class, 'cap_bac_id');
     }
 }
