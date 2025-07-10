@@ -14,9 +14,9 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create()
     {
-        return view('auth.login');
+        return redirect()->route('home')->with('error', 'Hãy tiến hành đăng nhập');
     }
 
     /**
@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         if ($user->vai_tro_id == 1) {
-            return redirect()->route('home'); 
+            return redirect()->route('home');
         }
 
         return redirect()->route('admin.dashboard');

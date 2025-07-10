@@ -174,16 +174,137 @@
                                             Lịch sử tích điểm
                                         </button>
                                     </li>
+
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="rate-tab" data-bs-toggle="tab"
+                                            data-bs-target="#rate" type="button" role="tab">
+                                            Bình luận
+                                        </button>
+                                    </li>
                                 </ul>
 
                                 <div class="tab-content" id="historyTabsContent">
                                     <div class="tab-pane fade show active" id="orders" role="tabpanel">
-                                        <p class="text-muted">Chưa có đơn hàng nào.</p>
+                                        @if ($donHangsHoanThanh->isEmpty())
+                                            <p class="text-muted">Chưa có đơn hàng nào.</p>
+                                        @else
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered align-middle">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Mã đơn hàng</th>
+                                                            <th>Ngày đặt</th>
+                                                            <th>Trạng thái</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach ($donHangsHoanThanh as $donHang)
+                                                            <tr>
+                                                                <td>{{ $donHang->ma_van_don }}</td>
+                                                                <td>{{ $donHang->created_at->format('d/m/Y H:i') }}</td>
+                                                                <td>
+                                                                    @if ($donHang->trang_thai === 'hoan_thanh')
+                                                                        <span class="badge bg-success">Hoàn thành</span>
+                                                                    @elseif ($donHang->trang_thai === 'dang_xu_ly')
+                                                                        <span class="badge bg-warning text-dark">Đang xử
+                                                                            lý</span>
+                                                                    @elseif ($donHang->trang_thai === 'da_huy')
+                                                                        <span class="badge bg-danger">Đã huỷ</span>
+                                                                    @else
+                                                                        <span
+                                                                            class="badge bg-secondary">{{ ucfirst($donHang->trang_thai) }}</span>
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        @endif
                                     </div>
 
                                     <div class="tab-pane fade" id="points" role="tabpanel">
-                                        <p class="text-muted">Chưa có lịch sử tích điểm.</p>
+                                        @if ($lichSuDiem->isEmpty())
+                                            <p class="text-muted">Chưa có lịch sử tích điểm.</p>
+                                        @else
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Ngày</th>
+                                                        <th>Loại</th>
+                                                        <th>Điểm</th>
+                                                        <th>Mô tả</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($lichSuDiem as $index => $diem)
+                                                        <tr>
+                                                            <td>{{ $index + 1 }}</td>
+                                                            <td>{{ \Carbon\Carbon::parse($diem->created_at)->format('d/m/Y H:i') }}
+                                                            </td>
+                                                            <td>
+                                                                @if ($diem->loai === 'Tích điểm')
+                                                                    <span class="badge bg-success">Tích điểm</span>
+                                                                @else
+                                                                    <span class="badge bg-danger">Sử dụng điểm</span>
+                                                                @endif
+                                                            </td>
+                                                            <td>{{ number_format($diem->diem) }}</td>
+                                                            <td>{{ $diem->mo_ta }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        @endif
                                     </div>
+
+                                    <div class="tab-pane fade" id="rate" role="tabpanel">
+                                        @if ($binhLuans->isEmpty())
+                                            <p class="text-muted">Chưa có bình luận.</p>
+                                        @else
+                                            @foreach ($binhLuans as $binhLuan)
+                                                <div class="card mb-4 shadow-sm border-0">
+                                                    <div class="row g-0 p-3">
+                                                        <div
+                                                            class="col-md-2 d-flex align-items-center justify-content-center">
+                                                            <img src="{{ asset('storage/' . ($binhLuan->sanPham->hinh_anh ?? 'icon/icon_sp.png')) }}"
+                                                                alt="Sản phẩm" class="img-fluid rounded"
+                                                                style="max-height: 80px;">
+                                                        </div>
+
+                                                        <div class="col-md-10">
+                                                            <div class="card-body p-0 ps-3">
+                                                                <h6 class="mb-1">
+                                                                    {{ $binhLuan->sanPham->ten ?? '[Đã xóa]' }}
+                                                                </h6>
+
+                                                                <div class="mb-2">
+                                                                    @for ($i = 1; $i <= 5; $i++)
+                                                                        @if ($i <= $binhLuan->danh_gia)
+                                                                            <i class="fas fa-star text-warning"></i>
+                                                                        @else
+                                                                            <i class="far fa-star text-muted"></i>
+                                                                        @endif
+                                                                    @endfor
+                                                                </div>
+
+                                                                <div class="mb-2">
+                                                                    <p class="mb-1">{{ $binhLuan->noi_dung }}</p>
+                                                                </div>
+
+                                                                <div class="text-muted small text-end">
+                                                                    {{ $binhLuan->created_at->format('d/m/Y H:i') }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+
+
                                 </div>
                             </div>
                         </div>

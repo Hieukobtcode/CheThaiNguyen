@@ -17,7 +17,7 @@
                             <tr>
                                 <th class="text-center" style="width: 5%">#</th>
                                 <th>Tên cấp thẻ</th>
-                                <th class="text-center">Điểm tối thiểu</th>
+                                <th class="text-center">Tổng chi tiêu</th>
                                 <th class="text-center">Ưu đãi (%)</th>
                                 <th class="text-center" style="width: 15%">Ngày tạo</th>
                                 <th class="text-center" style="width: 10%">Thao tác</th>

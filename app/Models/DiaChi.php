@@ -13,13 +13,13 @@ class DiaChi extends Model
 
     protected $fillable = [
         'nguoi_dung_id',
-        'ho_ten_nguoi_nhan',
+        'ho_va_ten',
         'so_dien_thoai',
-        'dia_chi_cu_the',
-        'phuong_xa',
-        'quan_huyen',
         'tinh_thanh',
         'mac_dinh',
+        'quan_huyen',
+        'phuong_xa',
+        'dia_chi_cu_the',
     ];
 
     public function nguoiDung()

@@ -15,11 +15,12 @@ class NguoiDung extends Authenticatable
     protected $fillable = [
         'ten',
         'email',
+        'hinh_anh',
+        'trang_thai',
         'password',
         'vai_tro_id',
         'cap_the_id',
-        'hinh_anh',      
-        'trang_thai',
+        'tong_diem'
     ];
 
     protected $hidden = [
@@ -32,7 +33,7 @@ class NguoiDung extends Authenticatable
         return $this->belongsTo(VaiTro::class, 'vai_tro_id');
     }
 
-    public function capThe()
+    public function capBac()
     {
         return $this->belongsTo(CapThe::class, 'cap_the_id');
     }
@@ -56,4 +57,15 @@ class NguoiDung extends Authenticatable
     {
         return $this->hasOne(GioHang::class, 'nguoi_dung_id');
     }
+
+    public function binhLuans()
+    {
+        return $this->hasMany(BinhLuan::class, 'nguoi_dung_id');
+    }
+
+    public function phanHois()
+    {
+        return $this->hasMany(PhanHoi::class, 'nguoi_dung_id');
+    }
+
 }

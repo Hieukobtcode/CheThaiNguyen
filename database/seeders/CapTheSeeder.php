@@ -2,20 +2,38 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\CapThe;
 
 class CapTheSeeder extends Seeder
 {
-    
-    public function run()
+    public function run(): void
     {
-        DB::table('cap_the')->insert([
-            ['ten' => 'Đồng', 'diem_toi_thieu' => 0, 'ti_le_tich_diem' => 0.01, 'uu_dai' => 'Tích điểm cơ bản'],
-            ['ten' => 'Bạc', 'diem_toi_thieu' => 500, 'ti_le_tich_diem' => 0.02, 'uu_dai' => 'Giảm 5% đơn từ 300k'],
-            ['ten' => 'Vàng', 'diem_toi_thieu' => 1500, 'ti_le_tich_diem' => 0.03, 'uu_dai' => 'Freeshp và giảm 10%'],
-            ['ten' => 'Kim Cương', 'diem_toi_thieu' => 3000, 'ti_le_tich_diem' => 0.05, 'uu_dai' => 'Freeship + quà tặng'],
+        CapThe::insert([
+            [
+                'ten' => 'Đồng',
+                'diem_toi_thieu' => 5000000,
+                'ti_le_tich_diem' => 1,
+                'uu_dai' => 'Tỷ lệ tích điểm 1%',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'ten' => 'Bạc',
+                'diem_toi_thieu' => 10000000,
+                'ti_le_tich_diem' => 3,
+                'uu_dai' => 'Tỷ lệ tích điểm 3%',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'ten' => 'Vàng',
+                'diem_toi_thieu' => 20000000,
+                'ti_le_tich_diem' => 5,
+                'uu_dai' => 'Tỷ lệ tích điểm 5%',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }

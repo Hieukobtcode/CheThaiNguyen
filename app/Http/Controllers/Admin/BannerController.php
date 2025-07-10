@@ -24,7 +24,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'tieu_de' => 'required|string|max:255',
-            'hinh_anh' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'hinh_anh' => 'required|image|mimes:jpeg,png,jpg',
             'trang_thai' => 'required|in:1,0',
         ]);
 
@@ -50,7 +50,7 @@ class BannerController extends Controller
     {
         $request->validate([
             'tieu_de' => 'required|string|max:255',
-            'hinh_anh' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'hinh_anh' => 'nullable|image|mimes:jpeg,png,jpg',
             'trang_thai' => 'required|in:1,0',
         ]);
 

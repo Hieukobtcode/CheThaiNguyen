@@ -15,9 +15,9 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
 
-    public function create(): View
+    public function create()
     {
-        return view('auth.register');
+        return redirect()->route('home')->with('error','Hãy tiến hành đăng nhập');
     }
 
     public function store(Request $request): RedirectResponse

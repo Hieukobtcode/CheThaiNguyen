@@ -79,6 +79,34 @@
                                                 <td class="text-center">
                                                     <a href="{{ route('don_hang.show', $donHang->id) }}"
                                                         class="btn btn-sm btn-outline-primary">Xem</a>
+
+                                                    @if ($donHang->trang_thai === 'cho_xac_nhan')
+                                                        <form action="{{ route('don-hang.xac-nhan', $donHang->id) }}"
+                                                            method="POST" class="d-inline"
+                                                            onsubmit="return confirm('Xác nhận đơn hàng này?')">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-success">Xác
+                                                                nhận</button>
+                                                        </form>
+                                                    @endif
+
+                                                    @if ($donHang->trang_thai === 'da_xac_nhan')
+                                                        <form action="{{ route('don-hang.dang-giao', $donHang->id) }}"
+                                                            method="POST" class="d-inline"
+                                                            onsubmit="return confirm('Xác nhận đơn hàng đã giao cho đơn vị vận chuyển!')">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-success">Giao hàng</button>
+                                                        </form>
+                                                    @endif
+
+                                                    @if ($donHang->trang_thai === 'dang_giao')
+                                                        <form action="{{ route('don-hang.da-giao', $donHang->id) }}"
+                                                            method="POST" class="d-inline"
+                                                            onsubmit="return confirm('Xác nhận đơn hàng đã được giao đến khách hàng!')">
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-sm btn-success">Đã giao</button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @empty

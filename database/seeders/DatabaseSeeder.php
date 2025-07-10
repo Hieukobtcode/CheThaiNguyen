@@ -1,22 +1,20 @@
 <?php
 
 namespace Database\Seeders;
+
+use CapTheSeeder;
+use Database\Seeders\CapTheSeeder as SeedersCapTheSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    
     public function run(): void
     {
-
-        $this->call(
-            [
-                BaiVietSeeder::class,
-                CapTheSeeder::class,
-                NguoiDungSeeder::class,
-                DanhMucSeeder::class,
-                SanPhamSeeder::class,
-            ]
-        );
+        $this->call([
+            SeedersCapTheSeeder::class,
+            DanhMucSeeder::class,
+            SanPhamSeeder::class,
+            NguoiDungSeeder::class,
+        ]);
     }
 }

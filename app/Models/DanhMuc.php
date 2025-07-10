@@ -13,8 +13,6 @@ class DanhMuc extends Model
 
     protected $fillable = [
         'ten',
-        'mo_ta',
-        'trang_thai',
     ];
 
     public function sanPhams()

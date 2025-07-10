@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="diem_toi_thieu" class="form-label">Điểm tối thiểu <span
+                        <label for="diem_toi_thieu" class="form-label">Tổng chi tiêu<span
                                 class="text-danger">*</span></label>
                         <input type="number" name="diem_toi_thieu" id="diem_toi_thieu" class="form-control"
                             value="{{ old('diem_toi_thieu', $capBac->diem_toi_thieu) }}" required>

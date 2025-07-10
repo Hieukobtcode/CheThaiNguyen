@@ -122,6 +122,17 @@
                     </a>
                 </li>
 
+                {{-- User --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('voucher.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:promotion" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Voucher</span>
+                    </a>
+                </li>
+
                 {{-- Đơn hàng --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('don_hang.index') }}"
@@ -130,6 +141,17 @@
                             <iconify-icon icon="mdi:receipt-text" class="fs-6"></iconify-icon>
                         </span>
                         <span class="hide-menu ps-1">Đơn hàng</span>
+                    </a>
+                </li>
+
+                {{-- Đánh giá --}}
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link warning-hover-bg" href="{{ route('binh_luan.index') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-success-subtle rounded-1">
+                            <iconify-icon icon="mdi:comment" class="fs-6"></iconify-icon>
+                        </span>
+                        <span class="hide-menu ps-1">Đánh giá</span>
                     </a>
                 </li>
 

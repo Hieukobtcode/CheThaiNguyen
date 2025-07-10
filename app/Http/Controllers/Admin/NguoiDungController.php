@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BinhLuan;
+use App\Models\LichSuDiem;
 use App\Models\NguoiDung;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,8 +26,21 @@ class NguoiDungController extends Controller
     public function edit(string $id)
     {
         $user = NguoiDung::findOrFail($id);
-        return view('admin.nguoi-dung.edit', compact('user'));
+
+        $donHangsHoanThanh = $user->donHangs()
+            ->where('trang_thai', 'da_hoan_thanh')
+            ->get();
+
+        $lichSuDiem = LichSuDiem::where('nguoi_dung_id', '=', $user->id)->get();
+
+        $binhLuans = BinhLuan::with('sanPham')
+            ->where('nguoi_dung_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('admin.nguoi-dung.edit', compact('user', 'donHangsHoanThanh', 'lichSuDiem', 'binhLuans'));
     }
+
 
     public function toggleTrangThai($id)
     {

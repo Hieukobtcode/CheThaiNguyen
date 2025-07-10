@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\NguoiDung;
+use App\Models\ThongBao;
 use App\Models\Voucher;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -10,18 +12,13 @@ use Illuminate\Support\Facades\Validator;
 
 class KhuyenMaiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         $vouchers = Voucher::paginate(5);
         return view('admin.voucher.index', compact('vouchers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('admin.voucher.create');
@@ -61,6 +58,17 @@ class KhuyenMaiController extends Controller
             'bat_dau' => $batDau,
             'ket_thuc' => $ketThuc,
         ]);
+        $nguoiDungs = NguoiDung::all();
+
+        foreach ($nguoiDungs as $nguoiDung) {
+            ThongBao::create([
+                'nguoi_dung_id' => $nguoiDung->id,
+                'tieu_de' => 'Khuyến mãi mới: ' . $request->ten_khuyen_mai,
+                'noi_dung' => 'Nhận ngay ưu đãi với mã giảm giá "' . $request->ma . '" trị giá ' . number_format($request->gia_tri) . ' VNĐ!',
+                'loai' => 'khuyen_mai',
+                'thoi_gian_gui' => now(),
+            ]);
+        }
 
         return redirect()->route('voucher.index')->with('success', 'Thêm khuyến mãi thành công!');
     }

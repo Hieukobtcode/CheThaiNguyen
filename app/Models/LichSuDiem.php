@@ -9,15 +9,13 @@ class LichSuDiem extends Model
 {
     use HasFactory;
 
-    protected $table = 'lich_su_diems';
+    protected $table = 'lich_su_diem';
 
     protected $fillable = [
         'nguoi_dung_id',
         'diem',
         'loai',
         'mo_ta',
-        'nguon',
-        'ngay',
     ];
 
     public function nguoiDung()
