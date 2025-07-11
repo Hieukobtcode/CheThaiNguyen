@@ -148,7 +148,7 @@
                                          </div>
                                      </div>
 
-                                     <form method="POST" action="{{ route('logout') }}">
+                                     <form method="POST" action="{{ route('dang-xuat') }}">
                                          @csrf
                                          <button type="submit" class="btn btn-primary w-100">Đăng xuất</button>
                                      </form>

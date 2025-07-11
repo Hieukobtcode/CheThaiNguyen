@@ -17,9 +17,10 @@ class ThongTinCaNhanController extends Controller
     // Trang thông tin cá nhân
     public function profile()
     {
-        $nguoiDung = Auth::user();
+        $nguoiDung =NguoiDung::with('capBac')->find(Auth::id());
         return view('client.thong-tin-ca-nhan', compact('nguoiDung'));
     }
+
 
     // Cập nhật thông tin cá nhân, bao gồm ảnh đại diện
     public function update(Request $request)

@@ -64,7 +64,25 @@
                 </div>
 
                 <div class="right-content col-md-8">
-                    <p class="font-weight-bold title m-0 text-center text-md-left"><span>Thông tin tài khoản</span></p>
+                   <p class="font-weight-bold title m-0 text-center text-md-left">
+    <span>Thông tin tài khoản</span>
+
+    @php
+        $capBac = $nguoiDung->capBac->ten ?? null;
+        $class = match($capBac) {
+            'Đồng' => 'badge badge-warning',     
+            'Bạc'  => 'badge badge-info',        
+            'Vàng' => 'badge badge-success',    
+            default => 'badge badge-secondary',  
+        };
+    @endphp
+
+    <span class="{{ $class }} ml-2" style="font-size: 14px">
+        Cấp bậc: {{ $capBac ?? 'Chưa có' }}
+    </span>
+</p>
+
+
                     <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" >
                         @csrf
                         @method('PUT')

@@ -56,6 +56,7 @@ class AuthController extends Controller
         $nguoiDung->ten = $request->ho_ten;
         $nguoiDung->email = $request->email;
         $nguoiDung->password = Hash::make($request->mat_khau);
+        $nguoiDung->cap_the_id = 1;
         $nguoiDung->save();
 
         return response()->json([

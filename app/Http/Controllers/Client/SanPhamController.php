@@ -9,22 +9,22 @@ use Illuminate\Http\Request;
 
 class SanPhamController extends Controller
 {
-    //Danh sách sản phẩm theo tìm kiếm
     public function index(Request $request)
-    {
-        $query = $request->input('q');
+{
+    $query = $request->input('q');
 
-        $danhMucs = DanhMuc::all();
-        $sanPhams = SanPham::query();
+    $danhMucs = DanhMuc::all();
+    $sanPhams = SanPham::query();
 
-        if ($query) {
-            $sanPhams = $sanPhams->where('ten', 'like', '%' . $query . '%');
-        }
-
-        $sanPhams = SanPham::paginate(12);
-
-        return view('client.danh-sach-san-pham', compact('sanPhams', 'query', 'danhMucs'));
+    if ($query) {
+        $sanPhams = $sanPhams->where('ten', 'like', '%' . $query . '%');
     }
+
+    $sanPhams = $sanPhams->paginate(12); 
+
+    return view('client.danh-sach-san-pham', compact('sanPhams', 'query', 'danhMucs'));
+}
+
 
     //Lọc thep danh mục
     public function locTheoDanhMuc($id)
