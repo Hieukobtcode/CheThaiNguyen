@@ -32,8 +32,8 @@ Route::get('/search', [ClientSanPhamController::class, 'index']);
 Route::get('/danh-muc/{id}', [ClientSanPhamController::class, 'locTheoDanhMuc'])->name('san-pham.loc-theo-danh-muc');
 
 // Đăng nhập, đăng ký, đăng xuất
-Route::post('/dang-nhap', [AuthController::class, 'xuLyDangNhap']);
-Route::post('/dang-ky', [AuthController::class, 'xuLyDangKy']);
+Route::post('/dang-nhap', [AuthController::class, 'xuLyDangNhap'])->name('dang-nhap');
+Route::post('/dang-ky', [AuthController::class, 'xuLyDangKy'])->name('dang-ky');
 Route::get('/dang-xuat', [AuthController::class, 'dangXuat'])->name('dang-xuat');
 
 // Quên mật khẩu

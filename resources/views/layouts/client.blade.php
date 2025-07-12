@@ -694,7 +694,7 @@
                         {{-- FORM ĐĂNG NHẬP --}}
                         <div class="col-6 form-login">
                             <h4 class="font-weight-bold text-uppercase title">đăng nhập</h4>
-                            <form class="login" method="POST" action="{{ url('/dang-nhap') }}">
+                            <form class="login" method="POST" action="{{ route('dang-nhap') }}">
                                 @csrf
                                 <ul class="m-0 p-0">
                                     <li class="li-email">
@@ -719,7 +719,7 @@
                         {{-- FORM ĐĂNG KÝ --}}
                         <div class="col-6 form-signup">
                             <h4 class="font-weight-bold text-uppercase title">đăng ký</h4>
-                            <form class="register" method="POST" action="{{ url('/dang-ky') }}">
+                            <form class="register" method="POST" action="{{ route('dang-ky') }}">
                                 @csrf
                                 <ul class="m-0 p-0">
                                     <li>
@@ -762,8 +762,8 @@
         $('.login').on('submit', function(e) {
             e.preventDefault();
 
-            let email = $('input[name="email"]').val().trim();
-            let password = $('input[name="password"]').val();
+            let email = $(this).find('input[name="email"]').val().trim();
+            let password = $(this).find('input[name="password"]').val();
 
             if (!email || !password) {
                 Swal.fire('Lỗi', 'Vui lòng nhập email và mật khẩu.', 'warning');
@@ -797,10 +797,10 @@
         $('.register').on('submit', function(e) {
             e.preventDefault();
 
-            let hoTen = $('input[name="ho_ten"]').val().trim();
-            let email = $('input[name="email"]').val().trim();
-            let mk = $('input[name="mat_khau"]').val();
-            let mk2 = $('input[name="mat_khau_confirmation"]').val();
+            let hoTen = $(this).find('input[name="ho_ten"]').val().trim();
+            let email = $(this).find('input[name="email"]').val().trim();
+            let mk = $(this).find('input[name="mat_khau"]').val();
+            let mk2 = $(this).find('input[name="mat_khau_confirmation"]').val();
 
             if (!hoTen || !email || !mk || !mk2) {
                 Swal.fire('Lỗi', 'Vui lòng nhập đầy đủ thông tin.', 'warning');

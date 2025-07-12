@@ -43,7 +43,6 @@ class AuthController extends Controller
     }
 
 
-
     public function xuLyDangKy(Request $request)
     {
         $validated = $request->validate([
