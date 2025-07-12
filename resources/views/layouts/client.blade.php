@@ -67,6 +67,10 @@
     <script defer type="text/javascript" src="https://web.nvnstatic.net/tp/T0239/js/pview.js?v=22"></script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         .cart-small {
             display: none;
             position: absolute;
@@ -356,7 +360,7 @@
                     <p class="text-center text-uppercase font-weight-bold m-0">
                     </p>
                 </div>
-                <div class="top-header d-flex align-items-center container-fluid">
+                <div class="top-header d-flex align-items-center container-fluid" style="height: 50px">
                     <div class="top-header__left d-flex align-items-center d-lg-block">
                         <div class="menu-bar d-lg-none">
                             <i class="far fa-bars"></i>
@@ -379,19 +383,12 @@
                         </div>
                     </div>
 
-                  <div class="logo text-center py-4">
-    <a href="/" class="d-inline-block">
-        <img 
-            src="{{ asset('storage/logo_web/logo.jpg') }}" 
-            alt="logo_web" 
-            loading="lazy"
-            class="img-fluid"
-            style="max-width: 250px; height: auto;"
-        >
-    </a>
-</div>
-
-
+                    <div class="logo text-center py-4">
+                        <a href="/" class="d-inline-block">
+                            <img src="{{ asset('storage/logo_web/logo.jpg') }}" alt="logo_web" loading="lazy"
+                                class="img-fluid" style="max-width: 250px; height: auto;">
+                        </a>
+                    </div>
 
                     <div class="top-header__right">
 
@@ -510,7 +507,6 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <i class="fal fa-times position-absolute"></i>
                                 </div>
                             </li>
 
@@ -554,7 +550,6 @@
                     </div>
                 </div>
 
-
                 <div class="container-fluid">
                     <div class="bottom-header">
                         <div class="d-none d-lg-flex justify-content-center">
@@ -589,7 +584,7 @@
 
                                 <li class="lv1 cate_hover"><a
                                         class="d-inline-block font-weight-bold position-relative tp_menu"
-                                        href="/promotion" title="Khuyến mại">Khuyến mại</a>
+                                        href="{{ route('khuyen-mai') }}" title="Khuyến mại">Khuyến mại</a>
                                 </li>
 
                                 <li class="lv1 m-0 position-relative">
@@ -631,12 +626,8 @@
                         <div
                             class="col-md-3 footer-col d-none d-md-block logo-footer text-center font-weight-bold text-uppercase position-relative title beforPre">
                             <a href="javascript:void(0);" class="d-inline-block">
-                                <img loading="lazy"
-                                    src="https://pos.nvncdn.com/eb9ddb-116318/bn/20220324_e7lyZhiE74Tbp8i0K393FsLq.png"
-                                    alt="5">
+                                <img src="{{ asset('storage/logo_web/logo.jpg') }}" alt="logo_web" loading="lazy">
                             </a>
-
-
                         </div>
 
                         <div
@@ -644,11 +635,11 @@
                             <h5 class="font-weight-bold text-uppercase position-relative title beforPre"> thông tin
                                 liên hệ</h5>
                             <div class="footer-col__content">
-                                <p>Địa chỉ: 102 Thái Thịnh, Đống Đa, Hà Nội</p>
+                                <p>Địa chỉ: </p>
 
-                                <p>Email: contact@nhanh.vn</p>
+                                <p>Email: </p>
 
-                                <p>Hotline: 1900.2818</p>
+                                <p>Hotline: </p>
                             </div>
                         </div>
 
@@ -659,7 +650,7 @@
                             <div class="footer-col__content">
                                 <p><a href="/tra-cuu-don-hang/">Tra cứu đơn hàng</a></p>
 
-                                <p>Hotline hỗ trợ đơn hàng: 1900.2818</p>
+                                <p>Hotline hỗ trợ đơn hàng:</p>
                             </div>
                         </div>
                         <div
@@ -760,132 +751,6 @@
 
                 </div>
             </div>
-        </div>
-
-        <!-- Menu mobile-->
-        <div id="menu-mobile" class="d-lg-none position-fixed">
-            <!--    <div class="abc">-->
-            <div class="content-menu-mb d-inline-block position-fixed">
-                <ul class="list-menu">
-                    <li class="searh-mobile mobile-lv1">
-                        <form action="/search" method="get" class="form-group" role="search">
-                            <input type="text" name="q" placeholder="Tên hoặc mã sản phẩm"
-                                class="button_gradient form-control">
-                            <button type="submit" class="btn">
-                                <span class="fas fa-search"></span>
-                            </button>
-                        </form>
-                    </li>
-                    <li class="mobile-lv1 d-flex flex-wrap align-items-center">
-                        <a class="font-weight-bold d-block text-uppercase tp_menu" href="/accessories-pc570536.html"
-                            title="Accessories">
-                            Accessories </a>
-                        <i class="far fa-chevron-down text-center"></i>
-                        <ul role="menu">
-                            <li class="mobile-lv2">
-                                <a class=" d-block" href="/phu-kien-pc570539.html" title="Phụ kiện ">Phụ kiện </a>
-
-                                <ul>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/mu-pc570542.html">Mũ </a>
-                                    </li>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/dep-pc571346.html">Dép </a>
-                                        <ul class="mobile_lvlup lv4">
-                                            <li><a class=" d-block" href="/dep-nike-pc571349.html">Dép Nike </a>
-                                            </li>
-                                            <li><a class=" d-block" href="/dep-adidas-pc571350.html">Dép Adidas </a>
-                                            </li>
-                                            <li><a class=" d-block" href="/dep-mlb-pc571351.html">Dép MLB </a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/tat-pc570543.html">Tất</a>
-                                    </li>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/kinh-pc570544.html">Kính</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="mobile-lv2">
-                                <a class=" d-block" href="/balo-pc570538.html" title="Balo">Balo</a>
-
-                                <ul>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/herschel-pc570540.html">Herschel</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="mobile-lv1 d-flex flex-wrap align-items-center">
-                        <a class="font-weight-bold d-block text-uppercase tp_menu" href="/giay-pc570537.html"
-                            title="Giày">
-                            Giày </a>
-                        <i class="far fa-chevron-down text-center"></i>
-                        <ul role="menu">
-                            <li class="mobile-lv2">
-                                <a class=" d-block" href="/giay-puma-pc570895.html" title="Giày Puma ">Giày Puma
-                                </a>
-
-                                <ul>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/puma-mule-pc570898.html">Puma Mule </a>
-                                    </li>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/puma-rs-pc570899.html">Puma RS </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="mobile-lv2">
-                                <a class=" d-block" href="/giay-nike-pc570896.html" title="Giày Nike ">Giày Nike
-                                </a>
-
-                                <ul>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/air-max-pc570900.html">Air Max </a>
-                                        <ul class="mobile_lvlup lv4">
-                                            <li><a class=" d-block" href="/air-max-1-pc570902.html">Air Max 1 </a>
-                                            </li>
-                                            <li><a class=" d-block" href="/air-max-90-pc570903.html">Air Max 90 </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mobile-lv3">
-                                        <a class=" d-block" href="/air-zoom-pc570901.html">Air Zoom </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="mobile-lv2">
-                                <a class=" d-block" href="/giay-adidas-pc570897.html" title="Giày Adidas ">Giày
-                                    Adidas </a>
-
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="mobile-lv1 d-flex flex-wrap align-items-center">
-                        <a class="font-weight-bold d-block text-uppercase tp_menu" href="/ki-gui-pc571352.html"
-                            title="Kí gửi">
-                            Kí gửi </a>
-                    </li>
-                    <li class="mobile-lv1 d-flex flex-wrap align-items-center">
-                        <a class="font-weight-bold d-block text-uppercase tp_menu" href="/quan-ao-pc571353.html"
-                            title="Quần áo">
-                            Quần áo </a>
-                    </li>
-                    <li class="mobile-lv1 d-flex flex-wrap align-items-center">
-                        <a class="font-weight-bold d-block text-uppercase tp_menu" href="/news" title="Tin tức">
-                            Tin tức </a>
-                    </li>
-                    <li class="mobile-lv1 d-flex flex-wrap align-items-center">
-                        <a class="font-weight-bold d-block text-uppercase tp_menu" href="/promotion"
-                            title="Khuyến mại">
-                            Khuyến mại </a>
-                    </li>
-                </ul>
-            </div>
-            <!--    </div>-->
-            <i class="fal fa-times position-absolute"></i>
         </div>
 
     </div>

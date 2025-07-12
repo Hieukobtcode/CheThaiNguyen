@@ -86,6 +86,10 @@ Route::middleware(['auth'])->group(function () {
 
     //Đánh giá sản phẩm
     Route::post('/binh-luan/luu', [BinhLuanController::class, 'luu'])->name('binh-luan.luu');
+
+    //Khuyến mãi
+    Route::get('/khuyen-mai', [ThongTinCaNhanController::class, 'khuyenMai'])->name('khuyen-mai');
+
 });
 
 // ====================================ADMIN=====================================

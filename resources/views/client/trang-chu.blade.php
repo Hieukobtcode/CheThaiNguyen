@@ -1,5 +1,10 @@
 @extends('layouts.client')
 @section('content')
+    <style>
+        .quantity-input input[type="number"] {
+            max-width: 70px;
+        }
+    </style>
     <script defer type="text/javascript" src="https://web.nvnstatic.net/tp/T0239/js/index.js?v=3"></script>
     <div class="banner-main col-pre">
         <div class="banner-main__content">
@@ -58,7 +63,10 @@
                                 @endif
                             </a>
 
-                            <a href="#" class="cart-icon position-absolute d-inline-block text-center">
+                            <a href="javascript:void(0)" class="cart-icon position-absolute d-inline-block text-center"
+                                data-bs-toggle="modal" data-bs-target="#themGioHangModal" data-id="{{ $item->id }}"
+                                data-ten="{{ $item->ten }}" data-gia="{{ $item->gia }}"
+                                data-hinh="{{ $item->hinh_anh ? asset('storage/' . $item->hinh_anh) : asset('storage/icon/icon_sp.png') }}">
                                 +
                             </a>
                         </div>
@@ -117,7 +125,8 @@
                                     <div class="list_large_item col-lg-3 col-6 mb-4">
                                         <div class="position-relative">
                                             @if (!empty($item->hinh_anh))
-                                                <img style="width: 120px; height:150px" loading="lazy" src="{{ asset('storage/' . $item->hinh_anh) }}"
+                                                <img style="width: 120px; height:150px" loading="lazy"
+                                                    src="{{ asset('storage/' . $item->hinh_anh) }}"
                                                     alt="{{ $item->tieu_de }}" class="img-fluid w-100 rounded">
                                             @else
                                                 <img loading="lazy" src="{{ asset('storage/icon/icon_new.jpg') }}"
@@ -149,4 +158,89 @@
 
         <div class="homeProductCategory tp_product_category_box" style="display: none;"></div>
     </div>
+
+
+    <!-- Modal Thêm vào Giỏ Hàng -->
+    <div class="modal fade" id="themGioHangModal" tabindex="-1" aria-labelledby="themGioHangModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <form action="{{ route('gio-hang.them') }}" method="POST" class="w-100">
+                @csrf
+                <div class="modal-content border-0 shadow rounded-4">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title fw-bold text-uppercase" id="themGioHangModalLabel">Thêm vào giỏ hàng</h5>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="san_pham_id" id="modalSanPhamId">
+
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <img id="modalHinhAnh" src="" alt="Ảnh sản phẩm"
+                                    class="img-fluid rounded shadow-sm" style="max-height: 200px;">
+                            </div>
+                            <div class="col-md-8">
+                                <p class="mb-2"><strong>Tên sản phẩm:</strong> <span id="modalTenSanPham"></span></p>
+                                <p class="mb-2"><strong>Giá:</strong> <span id="modalGiaSanPham"
+                                        class="text-danger fw-bold fs-5"></span>₫</p>
+
+                                <div class="mb-3">
+                                    <label for="soLuong" class="form-label fw-bold">Số lượng</label>
+                                    <div class="input-group quantity-input w-50">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm rounded-start"
+                                            id="btnGiam">-</button>
+                                        <input type="number" class="form-control text-center" id="soLuong"
+                                            name="so_luong" value="1" min="1" required>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm rounded-end"
+                                            id="btnTang">+</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="submit" class="btn btn-primary px-4 rounded-pill">Thêm vào giỏ hàng</button>
+                        <button type="button" class="btn btn-secondary rounded-pill"
+                            data-bs-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themGioHangModal = document.getElementById('themGioHangModal');
+            themGioHangModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const id = button.getAttribute('data-id');
+                const ten = button.getAttribute('data-ten');
+                const gia = button.getAttribute('data-gia');
+                const hinh = button.getAttribute('data-hinh');
+
+                document.getElementById('modalSanPhamId').value = id;
+                document.getElementById('modalTenSanPham').textContent = ten;
+                document.getElementById('modalGiaSanPham').textContent = Number(gia).toLocaleString(
+                    'vi-VN');
+                document.getElementById('modalHinhAnh').src = hinh;
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.getElementById('soLuong');
+            const btnTang = document.getElementById('btnTang');
+            const btnGiam = document.getElementById('btnGiam');
+
+            btnTang.addEventListener('click', function() {
+                input.value = parseInt(input.value) + 1;
+            });
+
+            btnGiam.addEventListener('click', function() {
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            });
+        });
+    </script>
+
 @endsection

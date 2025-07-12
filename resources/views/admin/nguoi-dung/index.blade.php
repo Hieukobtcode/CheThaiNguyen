@@ -4,21 +4,6 @@
     <div class="container-fluid">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
-                <div class="row mb-3">
-                    <div class="col-md-3">
-                        <input type="text" id="searchInput" class="form-control" placeholder="Tìm theo tên...">
-                    </div>
-
-                    <div class="col-md-3">
-                        <select id="roleFilter" class="form-select">
-                            <option value="">-- Tất cả vai trò --</option>
-                            <option value="1">Admin</option>
-                            <option value="2">Nhân viên</option>
-                            <option value="3">Khách hàng</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="table-responsive">
                     <table class="table text-nowrap align-middle mb-0">
                         <thead class="bg-gradient-dark text-white">

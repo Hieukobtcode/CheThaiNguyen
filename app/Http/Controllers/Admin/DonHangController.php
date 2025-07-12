@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DonHang;
 use App\Models\ThongBao;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class DonHangController extends Controller
@@ -16,12 +17,11 @@ class DonHangController extends Controller
             ->orderByDesc('created_at')
             ->paginate(10);
 
-        return view('admin.don-hang.index', compact('donHangs'));
-    }
+        $thongKeTrangThai = DonHang::select('trang_thai', DB::raw('count(*) as tong'))
+            ->groupBy('trang_thai')
+            ->pluck('tong', 'trang_thai'); 
 
-    public function store(Request $request)
-    {
-        //
+        return view('admin.don-hang.index', compact('donHangs', 'thongKeTrangThai'));
     }
 
     public function show(string $id)
@@ -46,7 +46,7 @@ class DonHangController extends Controller
             // Gửi thông báo
             ThongBao::create([
                 'nguoi_dung_id' => $donHang->nguoi_dung_id,
-                'tieu_de' => 'Đơn hàng #' . $donHang->id . ' đã được xác nhận',
+                'tieu_de' => 'Đơn hàng #' . $donHang->ma_van_don . ' đã được xác nhận',
                 'noi_dung' => 'Cảm ơn bạn đã đặt hàng! Đơn hàng của bạn đang chuẩn bị được giao.',
                 'loai' => 'cap_nhat_don_hang',
                 'thoi_gian_gui' => now(),
@@ -72,7 +72,7 @@ class DonHangController extends Controller
             $donHang->save();
             ThongBao::create([
                 'nguoi_dung_id' => $donHang->nguoi_dung_id,
-                'tieu_de' => 'Đơn hàng #' . $donHang->id . ' đang được giao',
+                'tieu_de' => 'Đơn hàng #' . $donHang->ma_van_don . ' đang được giao',
                 'noi_dung' => 'Đơn hàng của bạn đang được vận chuyển. Vui lòng để ý điện thoại để nhận hàng.',
                 'loai' => 'cap_nhat_don_hang',
                 'thoi_gian_gui' => now(),
@@ -98,7 +98,7 @@ class DonHangController extends Controller
             $donHang->save();
             ThongBao::create([
                 'nguoi_dung_id' => $donHang->nguoi_dung_id,
-                'tieu_de' => 'Đơn hàng #' . $donHang->id . ' đã được giao',
+                'tieu_de' => 'Đơn hàng #' . $donHang->ma_van_don . ' đã được giao',
                 'noi_dung' => 'Cảm ơn bạn đã mua hàng. Nếu hài lòng, hãy để lại đánh giá nhé!',
                 'loai' => 'cap_nhat_don_hang',
                 'thoi_gian_gui' => now(),
@@ -110,5 +110,4 @@ class DonHangController extends Controller
             return redirect()->back()->with('error', 'Có lỗi xảy ra khi cập nhật trạng thái đơn hàng.');
         }
     }
-    
 }

@@ -25,7 +25,13 @@ class NguoiDungController extends Controller
      */
     public function edit(string $id)
     {
-        $user = NguoiDung::findOrFail($id);
+        $user = NguoiDung::with('capBac')->findOrFail($id);
+
+        $donHangsHoanThanh = $user->donHangs()
+            ->where('trang_thai', 'da_hoan_thanh')
+            ->get();
+
+        $tongChiTieu = $donHangsHoanThanh->sum('tong_tien');
 
         $donHangsHoanThanh = $user->donHangs()
             ->where('trang_thai', 'da_hoan_thanh')
@@ -38,7 +44,13 @@ class NguoiDungController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('admin.nguoi-dung.edit', compact('user', 'donHangsHoanThanh', 'lichSuDiem', 'binhLuans'));
+        return view('admin.nguoi-dung.edit', compact(
+            'user',
+            'donHangsHoanThanh',
+            'tongChiTieu',
+            'lichSuDiem',
+            'binhLuans'
+        ));
     }
 
 

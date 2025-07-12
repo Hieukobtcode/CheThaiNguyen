@@ -116,7 +116,7 @@
                                                 <i class="ti ti-credit-card"></i>
                                             </div>
                                             <div class="ms-6">
-                                                <h6 class="mb-1 fs-6">680</h6>
+                                                <h6 class="mb-1 fs-6">{{ $tongChiTieu }}</h6>
                                                 <p class="mb-0">Tổng chi tiêu</p>
                                             </div>
                                         </div>
@@ -133,7 +133,7 @@
                                                 <i class="ti ti-award"></i>
                                             </div>
                                             <div class="ms-6">
-                                                <h6 class="mb-1 fs-6">42</h6>
+                                                <h6 class="mb-1 fs-6">{{ $user->capBac->ten }}</h6>
                                                 <p class="mb-0">Hạng</p>
                                             </div>
                                         </div>
@@ -141,22 +141,6 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-body p-4">
-                                        <div class="d-flex align-items-center">
-                                            <div
-                                                class="bg-danger-subtle text-danger p-6 fs-7 rounded-circle d-flex align-items-center justify-content-center">
-                                                <i class="ti ti-ticket"></i>
-                                            </div>
-                                            <div class="ms-6">
-                                                <h6 class="mb-1 fs-6">780</h6>
-                                                <p class="mb-0">Số vé đã đặt</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="card">

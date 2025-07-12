@@ -54,36 +54,41 @@
                             </a>
                         </li>
 
-                        <li class="singout-action">
-                            <a class="d-inline-block" href="/user/signout">
-                                <span class="d-inline-block"><i class="fa fa-sign-out" aria-hidden="true"></i></span>
-                                <span>Đăng xuất</span>
-                            </a>
+                        <li class="signout-action">
+                            <form action="/logout" method="POST" style="display: inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                <button type="submit" class="btn btn-link d-flex align-items-center p-0">
+                                    <i class="fa fa-sign-out me-2" aria-hidden="true"></i>
+                                    <span>Đăng xuất</span>
+                                </button>
+                            </form>
                         </li>
+
                     </ul>
                 </div>
 
                 <div class="right-content col-md-8">
-                   <p class="font-weight-bold title m-0 text-center text-md-left">
-    <span>Thông tin tài khoản</span>
+                    <p class="font-weight-bold title m-0 text-center text-md-left">
+                        <span>Thông tin tài khoản</span>
 
-    @php
-        $capBac = $nguoiDung->capBac->ten ?? null;
-        $class = match($capBac) {
-            'Đồng' => 'badge badge-warning',     
-            'Bạc'  => 'badge badge-info',        
-            'Vàng' => 'badge badge-success',    
-            default => 'badge badge-secondary',  
-        };
-    @endphp
+                        @php
+                            $capBac = $nguoiDung->capBac->ten ?? null;
+                            $class = match ($capBac) {
+                                'Đồng' => 'badge badge-warning',
+                                'Bạc' => 'badge badge-info',
+                                'Vàng' => 'badge badge-success',
+                                default => 'badge badge-secondary',
+                            };
+                        @endphp
 
-    <span class="{{ $class }} ml-2" style="font-size: 14px">
-        Cấp bậc: {{ $capBac ?? 'Chưa có' }}
-    </span>
-</p>
+                        <span class="{{ $class }} ml-2" style="font-size: 14px">
+                            Cấp bậc: {{ $capBac ?? 'Chưa có' }}
+                        </span>
+                    </p>
 
 
-                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" >
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <ul class="d-flex align-items-center flex-wrap pl-0 mb-0">

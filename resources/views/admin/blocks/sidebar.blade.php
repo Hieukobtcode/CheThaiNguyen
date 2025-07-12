@@ -160,7 +160,7 @@
                             <p class="mb-0">Admin</p>
                         </div>
                     </div>
-                    <form id="logout-form" action="" method="POST" style="display: none;">
+                    <form id="logout-form" action="/logout" method="POST" >
                         @csrf
                     </form>
 

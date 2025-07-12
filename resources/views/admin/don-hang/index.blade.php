@@ -12,8 +12,18 @@
             'da_huy' => 'Đã hủy',
             'that_bai' => 'Thất bại',
         ];
-    @endphp
 
+        $counts = [
+            'tat_ca' => $donHangs->total(),
+            'cho_xac_nhan' => $donHangs->where('trang_thai', 'cho_xac_nhan')->count(),
+            'da_xac_nhan' => $donHangs->where('trang_thai', 'da_xac_nhan')->count(),
+            'dang_giao' => $donHangs->where('trang_thai', 'dang_giao')->count(),
+            'da_giao' => $donHangs->where('trang_thai', 'da_giao')->count(),
+            'da_hoan_thanh' => $donHangs->where('trang_thai', 'da_hoan_thanh')->count(),
+            'da_huy' => $donHangs->where('trang_thai', 'da_huy')->count(),
+            'that_bai' => $donHangs->where('trang_thai', 'that_bai')->count(),
+        ];
+    @endphp
     <div class="container-fluid">
         <div class="card shadow-sm border-0">
             <div class="card-body p-4">
@@ -29,7 +39,7 @@
                                         data-bs-target="#{{ $key }}" type="button" role="tab"
                                         aria-controls="{{ $key }}"
                                         aria-selected="{{ $loop->first ? 'true' : 'false' }}">
-                                        {{ $label }}
+                                        {{ $label }} ({{ $counts[$key] }})
                                     </button>
                                 </li>
                             @endforeach
@@ -95,7 +105,8 @@
                                                             method="POST" class="d-inline"
                                                             onsubmit="return confirm('Xác nhận đơn hàng đã giao cho đơn vị vận chuyển!')">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-sm btn-success">Giao hàng</button>
+                                                            <button type="submit" class="btn btn-sm btn-success">Giao
+                                                                hàng</button>
                                                         </form>
                                                     @endif
 
@@ -104,7 +115,8 @@
                                                             method="POST" class="d-inline"
                                                             onsubmit="return confirm('Xác nhận đơn hàng đã được giao đến khách hàng!')">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-sm btn-success">Đã giao</button>
+                                                            <button type="submit" class="btn btn-sm btn-success">Đã
+                                                                giao</button>
                                                         </form>
                                                     @endif
                                                 </td>

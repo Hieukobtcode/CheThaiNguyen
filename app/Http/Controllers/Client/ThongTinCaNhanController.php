@@ -6,7 +6,9 @@ use App\Models\NguoiDung;
 use App\Http\Controllers\Controller;
 use App\Models\DonHang;
 use App\Models\LichSuDiem;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -17,7 +19,7 @@ class ThongTinCaNhanController extends Controller
     // Trang thông tin cá nhân
     public function profile()
     {
-        $nguoiDung =NguoiDung::with('capBac')->find(Auth::id());
+        $nguoiDung = NguoiDung::with('capBac')->find(Auth::id());
         return view('client.thong-tin-ca-nhan', compact('nguoiDung'));
     }
 
@@ -49,7 +51,7 @@ class ThongTinCaNhanController extends Controller
 
                 // Lưu ảnh mới
                 $file = $request->file('hinh_anh');
-                $path = $file->store('nguoi_dung', 'public'); 
+                $path = $file->store('nguoi_dung', 'public');
                 $user->hinh_anh = $path;
             }
 
@@ -193,10 +195,24 @@ class ThongTinCaNhanController extends Controller
                 Log::info("Cộng điểm và lưu lịch sử điểm cho người dùng ID {$nguoiDung->id}");
             }
 
-            return redirect()->back()->with('success', 'Đơn hàng hoàn thành — đã tích điểm cho khách hàng.');
+            return redirect()->back()->with('success', 'Đơn hàng hoàn thành — bạn đã được tích điểm  cho đơn hàng này.');
         } catch (\Exception $e) {
             Log::error("Lỗi khi hoàn thành đơn hàng ID $id: " . $e->getMessage());
             return redirect()->back()->with('error', 'Có lỗi xảy ra khi cập nhật trạng thái đơn hàng.');
         }
+    }
+
+    public function khuyenMai()
+    {
+        $today = Carbon::today();
+
+        $khuyenMais = Voucher::where(function ($query) use ($today) {
+            $query->whereNull('ket_thuc')
+                ->orWhere('ket_thuc', '>=', $today);
+        })
+            ->orderByDesc('bat_dau')
+            ->get();
+
+        return view('client.danh-sach-khuyen-mai', compact('khuyenMais'));
     }
 }

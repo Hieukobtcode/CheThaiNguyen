@@ -67,20 +67,21 @@
                     </div>
 
                     <div class="mb-3">
-    <label for="cap_bac_id" class="form-label">Cấp thẻ áp dụng</label>
-    <select name="cap_bac_id" id="cap_bac_id"
-        class="form-select @error('cap_bac_id') is-invalid @enderror">
-        <option value="">-- Chọn cấp bậc --</option>
-        @foreach ($capBacs as $capBac)
-            <option value="{{ $capBac->id }}" {{ old('cap_bac_id') == $capBac->id ? 'selected' : '' }}>
-                {{ $capBac->ten }}
-            </option>
-        @endforeach
-    </select>
-    @error('cap_bac_id')
-        <small class="text-danger">{{ $message }}</small>
-    @enderror
-</div>
+                        <label for="cap_bac_id" class="form-label">Cấp thẻ áp dụng</label>
+                        <select name="cap_bac_id" id="cap_bac_id"
+                            class="form-select @error('cap_bac_id') is-invalid @enderror">
+                            <option value="all">Tất cả</option>
+                            @foreach ($capBacs as $capBac)
+                                <option value="{{ $capBac->id }}"
+                                    {{ old('cap_bac_id') == $capBac->id ? 'selected' : '' }}>
+                                    {{ $capBac->ten }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('cap_bac_id')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
 
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('voucher.index') }}" class="btn btn-secondary">

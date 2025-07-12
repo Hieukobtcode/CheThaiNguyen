@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 
 class KhuyenMaiController extends Controller
 {
-   
+
     public function index()
     {
         $vouchers = Voucher::paginate(5);
@@ -23,50 +23,53 @@ class KhuyenMaiController extends Controller
     public function create()
     {
         $capBacs = CapThe::all();
-        return view('admin.voucher.create',compact('capBacs'));
+        return view('admin.voucher.create', compact('capBacs'));
     }
 
-   public function store(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'ten_khuyen_mai' => 'required|string|max:255',
-        'ma' => 'required|string|max:50|unique:vouchers,ma',
-        'gia_tri' => 'required|numeric|min:0',
-        'so_luong' => 'required|integer|min:1',
-        'bat_dau' => 'nullable|date|after_or_equal:today',
-        'ket_thuc' => 'nullable|date|after:bat_dau',
-        'cap_bac_id' => 'nullable|exists:cap_the,id',
-    ]);
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'ten_khuyen_mai' => 'required|string|max:255',
+            'ma' => 'required|string|max:50|unique:vouchers,ma',
+            'gia_tri' => 'required|numeric|min:0',
+            'so_luong' => 'required|integer|min:1',
+            'bat_dau' => 'nullable|date|after_or_equal:today',
+            'ket_thuc' => 'nullable|date|after:bat_dau',
+        ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()
-            ->withErrors($validator)
-            ->withInput();
-    }
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-    $batDau = $request->bat_dau ? Carbon::parse($request->bat_dau) : null;
-    $ketThuc = $request->ket_thuc ? Carbon::parse($request->ket_thuc) : null;
+        $batDau = $request->bat_dau ? Carbon::parse($request->bat_dau) : null;
+        $ketThuc = $request->ket_thuc ? Carbon::parse($request->ket_thuc) : null;
 
-    if ($batDau && $ketThuc && $ketThuc->lessThanOrEqualTo($batDau)) {
-        return redirect()->back()
-            ->withErrors(['ket_thuc' => 'Thời gian kết thúc phải sau thời gian bắt đầu.'])
-            ->withInput();
-    }
+        if ($batDau && $ketThuc && $ketThuc->lessThanOrEqualTo($batDau)) {
+            return redirect()->back()
+                ->withErrors(['ket_thuc' => 'Thời gian kết thúc phải sau thời gian bắt đầu.'])
+                ->withInput();
+        }
 
-    // Tạo voucher
-    $voucher = Voucher::create([
-        'ten_khuyen_mai' => $request->ten_khuyen_mai,
-        'ma' => $request->ma,
-        'gia_tri' => $request->gia_tri,
-        'so_luong' => $request->so_luong,
-        'bat_dau' => $batDau,
-        'ket_thuc' => $ketThuc,
-        'cap_bac_id' => $request->cap_bac_id,
-    ]);
+        // Tạo voucher
+        $voucher = Voucher::create([
+            'ten_khuyen_mai' => $request->ten_khuyen_mai,
+            'ma' => $request->ma,
+            'gia_tri' => $request->gia_tri,
+            'so_luong' => $request->so_luong,
+            'bat_dau' => $batDau,
+            'ket_thuc' => $ketThuc,
+            'cap_bac_id' => $request->cap_bac_id,
+        ]);
 
-    // Gửi thông báo cho người dùng có cùng cấp thẻ
-    if ($request->cap_bac_id) {
-        $nguoiDungs = NguoiDung::where('cap_the_id', $request->cap_bac_id)->get();
+        if ($request->cap_bac_id === 'all') {
+            $nguoiDungs = NguoiDung::all();
+        } elseif ($request->cap_bac_id) {
+            $nguoiDungs = NguoiDung::where('cap_the_id', $request->cap_bac_id)->get();
+        } else {
+            $nguoiDungs = collect();
+        }
 
         foreach ($nguoiDungs as $nguoiDung) {
             ThongBao::create([
@@ -77,10 +80,10 @@ class KhuyenMaiController extends Controller
                 'thoi_gian_gui' => now(),
             ]);
         }
-    }
 
-    return redirect()->route('voucher.index')->with('success', 'Thêm khuyến mãi thành công!');
-}
+
+        return redirect()->route('voucher.index')->with('success', 'Thêm khuyến mãi thành công!');
+    }
 
 
     public function edit(string $id)

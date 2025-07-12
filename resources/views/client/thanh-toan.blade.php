@@ -147,7 +147,7 @@
                     <div class="container text-center">
                         <a href="/">
                             <img loading="lazy"
-                                src="https://pos.nvncdn.com/eb9ddb-116318/store/20220301_M6gPcIeoQ8cwvJrojaQ7a688.png"
+                                src="{{ asset('storage/logo_web/logo.jpg') }}"
                                 alt="Logo" style="max-height: 120px; margin: 20px 0;">
                         </a>
                     </div>
@@ -211,8 +211,9 @@
 
                                                         <div class="field-input-btn-wrapper">
                                                             <div class="field-input-wrapper">
-                                                                <input id="coupon" type="text" class="field-input"
-                                                                    name="couponCode" placeholder="Mã giảm giá" />
+                                                                <input id="coupon" type="text"
+                                                                    class="field-input" name="couponCode"
+                                                                    placeholder="Mã giảm giá" />
                                                             </div>
                                                             <button type="button" id="getCoupon"
                                                                 class="field-input-btn btn btn-default">
